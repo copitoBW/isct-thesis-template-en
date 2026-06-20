@@ -1,0 +1,52 @@
+%% !TEX root = ../main.tex
+%% ================================================================
+%%  Appendix B - LaTeX feature reference  (DELETE BEFORE SUBMISSION)
+%%  Copy these patterns into your chapters; this appendix is just a
+%%  cheat-sheet that proves every feature compiles.
+%% ================================================================
+\chapter{LaTeX Feature Reference}
+\label{app:latex}
+
+\emph{This appendix is a template cheat-sheet --- delete it before submission.}
+
+\section{Citations}
+Cite one source~\cite{smith2024example} or
+several~\cite{smith2024example,tanaka2023example,lee2025example}.
+Entries live in \texttt{references.bib}; the style is IEEE numeric.
+
+\section{Figures}
+Reference floats by label: \cref{fig:cheat-logo}.
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[width=0.5\textwidth]{ist_logo.png}
+  \caption{Caption goes \emph{below} a figure. Put image files in
+           \texttt{figures/} and always add a \texttt{\textbackslash label}.}
+  \label{fig:cheat-logo}
+\end{figure}
+
+\section{Tables}
+Use \texttt{booktabs} rules (no vertical lines), caption \emph{above}, as in
+\cref{tab:cheat-example}.
+
+\begin{table}[ht]
+  \centering
+  \caption{Example results table.}
+  \label{tab:cheat-example}
+  \begin{tabular}{l c c}
+    \toprule
+    Method & Metric 1 & Metric 2 \\
+    \midrule
+    Baseline          & 0.71 & 0.34 \\
+    \textbf{Proposed} & \textbf{0.86} & \textbf{0.21} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Equations}
+Number important equations and reference them, e.g.\ \cref{eq:cheat-example}:
+
+\begin{equation}
+  \label{eq:cheat-example}
+  y = f(x; \theta).
+\end{equation}

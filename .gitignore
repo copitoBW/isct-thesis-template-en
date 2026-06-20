@@ -1,0 +1,32 @@
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.xdy
+
+# All build artefacts go here (see .latexmkrc: $out_dir = 'build').
+build/
+
+# Keep the compiled thesis out of git history (optional: remove to track it).
+# (Kept for older checkouts / manual builds that still write to the root.)
+main.pdf

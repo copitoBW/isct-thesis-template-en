@@ -1,0 +1,43 @@
+{
+  // LaTeX Workshop build recipe:
+  //   "latexmk (pdfLaTeX)" : builds main.tex via pdflatex -> biber -> pdflatex x2.
+  // Saving main.tex (or pressing the green build button) runs it automatically.
+  "latex-workshop.latex.recipe.default": "latexmk (pdfLaTeX)",
+  // The build writes every artefact into build/ (see -outdir below and .latexmkrc),
+  // so the source folder never fills up with residual files. Tell LaTeX Workshop to
+  // look there for the compiled PDF.
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk (pdfLaTeX)",
+      "tools": ["latexmk"]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=build",
+        "%DOC%"
+      ],
+      "env": {}
+    }
+  ],
+  // After each build, tidy the intermediate files inside build/ (the PDF is kept).
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux", "*.bbl", "*.bcf", "*.blg", "*.idx", "*.ind", "*.lof",
+    "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg",
+    "*.glo", "*.gls", "*.fls", "*.log", "*.fdb_latexmk", "*.synctex.gz",
+    "*.run.xml"
+  ],
+  "latex-workshop.view.pdf.viewer": "tab",
+  "files.associations": {
+    "*.cls": "latex"
+  }
+}

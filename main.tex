@@ -1,0 +1,58 @@
+%% ==============================================================
+%%  main.tex  -  master file (keep this thin: metadata + \input)
+%%  Build:  pdflatex -> biber -> pdflatex x2   (latexmk does this)
+%% ==============================================================
+\documentclass{ist_master_thesis}
+
+% ---------- Thesis metadata (edit these) ----------------------
+\title{My little thesis:\\
+       A Pony Descriptive Subtitle Across\\
+       Two or Three Balanced Lines}
+\author{Angel Matos}
+\supervisor{Prof.\ Masashi Matsuoka}
+\school{School of Environment and Society}
+\department{Department of Architecture and Building Engineering}
+\degree{Master's Thesis}
+\thesisyear{2026}
+% \laboratory{Matsuoka Laboratory}   % optional; omit to hide the line
+% \thesismonth{March}                % optional; omit to show year only
+% \logofile{figures/ist_logo.png}    % default; uncomment to override
+
+% ---------- Bibliography database -----------------------------
+\addbibresource{references.bib}
+
+\begin{document}
+
+% ===================== FRONT MATTER ==========================
+\makethesistitle
+
+\pagenumbering{roman}
+\pagestyle{plain}                    % bottom-centred roman numerals
+
+\input{frontmatter/abstract}
+\input{frontmatter/acknowledgment}
+
+\printtoc
+\printlistoffig
+\printlistoftab
+
+% ===================== MAIN MATTER ===========================
+\clearpage
+\pagenumbering{arabic}
+\pagestyle{fancy}                    % running headers from here on
+
+\input{chapters/01-introduction}
+\input{chapters/02-background}
+\input{chapters/03-data}
+\input{chapters/04-methodology}
+\input{chapters/05-results}
+\input{chapters/06-conclusion}
+
+% ===================== BACK MATTER ===========================
+\printbibliography[heading=bibintoc,title={References}]
+
+\appendix
+\input{chapters/appendix-a}
+\input{chapters/appendix-b}
+
+\end{document}
