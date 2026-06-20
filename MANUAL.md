@@ -4,6 +4,10 @@ A practical, step-by-step guide to writing your master's thesis with this
 template. No deep LaTeX knowledge required — if you can edit text and copy-paste,
 you can use this.
 
+> **First time here?** Read **[README.md](README.md)** first — it walks you through
+> installing the tools, getting the files, and pressing build. This manual is about
+> *writing* your thesis.
+
 > **One golden rule:** keep all *formatting* in `ist_master_thesis.cls`, and keep
 > all *content* in the chapter files. You almost never need to touch the class.
 
