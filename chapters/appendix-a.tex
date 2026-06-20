@@ -8,3 +8,20 @@
 \emph{(Optional. Put material here that supports the thesis but would interrupt
 the main text: extra tables and figures, full derivations, additional results,
 questionnaires, or implementation details.)}
+
+\section{Code listing example}
+\label{sec:code-example}
+
+Use the \texttt{lstlisting} environment for code or algorithms, and reference it
+with \cref{lst:demo}. The style (monospace, line numbers, thin rules) is set once
+in the class file.
+
+\begin{lstlisting}[language=Python,float=ht,
+    caption={A minimal example listing.},label={lst:demo}]
+def harmony(friends):
+    """Return the friendship coefficient of a group of ponies."""
+    return sum(f.magic for f in friends) / len(friends)
+\end{lstlisting}
+
+To pull in a whole source file instead, use the
+\texttt{\textbackslash lstinputlisting} command.

@@ -17,7 +17,7 @@ thesis/
 ├── ist_master_thesis.cls         ← ALL the formatting (fonts, margins, title page…). Rarely touched.
 ├── references.bib                ← your bibliography database (one entry per paper)
 ├── frontmatter/
-│   └── abstract.tex  acknowledgment.tex   ← (abstract: write this LAST)
+│   └── abstract.tex  acknowledgment.tex  abbreviations.tex   ← (abstract: write this LAST)
 ├── chapters/
 │   └── 01-introduction.tex … 06-conclusion.tex, appendix-a.tex, appendix-b.tex
 │      (appendix-b = LaTeX cheat-sheet — DELETE before submitting)
@@ -151,23 +151,15 @@ e.g. `figures/pipeline.png`. No subfolders needed.
 ```latex
 \begin{figure}[ht]
   \centering
-  \figauto{0.9}{pipeline.png}{0.4}{Short description of what the figure shows.}
+  \includegraphics[width=0.9\textwidth]{pipeline.png}
   \caption{The real caption that appears under the figure.}
   \label{fig:pipeline}
 \end{figure}
 ```
 
-`\figauto{width}{file}{aspect}{description}`:
-- **width** — fraction of the page width (`0.9` = 90 %, `0.5` = half).
-- **file** — the filename inside `figures/` (with extension).
-- **aspect** — box height ÷ width, used *only* for the placeholder (`0.4` = short
-  and wide). Once the real image exists, its own proportions are used.
-- **description** — text shown inside the grey placeholder box.
-
-**The magic:** if `figures/pipeline.png` does **not** exist yet, you get a labelled
-grey placeholder box. The moment you add the file, it automatically becomes the
-real image — no code change. So you can write the whole thesis now and drop in
-pictures as you make them.
+- `width=0.9\textwidth` sets the size (`0.9` = 90 % of the text width, `0.5` = half).
+- The filename is looked up inside `figures/` automatically — no path needed.
+- Always give the figure a `\label{fig:...}` so you can refer to it.
 
 ### Referring to a figure in text
 ```latex
@@ -175,11 +167,6 @@ As shown in \cref{fig:pipeline}, the pipeline has four stages.
 ```
 This prints "As shown in Figure 4.1…" and updates automatically. **Never** type
 "Figure 4.1" by hand.
-
-### A plain image (when the file definitely exists)
-```latex
-\includegraphics[width=0.6\textwidth]{myimage.png}
-```
 
 ---
 
@@ -337,6 +324,31 @@ for these):
 
 If you're unsure, leave the class alone — the defaults are already a clean,
 professional academic look.
+
+---
+
+## 14. Abbreviations and code listings
+
+**Abbreviations.** Define each acronym once in `frontmatter/abbreviations.tex`:
+```latex
+\acro{gis}[GIS]{Geographic Information System}
+```
+Then in the text write `\ac{gis}`. On first use it prints the full form with the
+short form in brackets ("Geographic Information System (GIS)"); after that it just
+prints "GIS". Use `\acl{gis}` to force the long form, `\acs{gis}` the short. Every
+defined term is listed in the **List of Abbreviations** in the front matter.
+
+**Code listings.** For code or algorithms:
+```latex
+\begin{lstlisting}[language=Python,float=ht,
+    caption={What it does.},label={lst:demo}]
+def f(x):
+    return x + 1
+\end{lstlisting}
+```
+Reference it with `\cref{lst:demo}` → "Listing A.1". To pull in a whole file, use
+`\lstinputlisting[language=Python]{scripts/foo.py}`. The style (monospace, line
+numbers, thin rules) is preset in the class.
 
 ---
 

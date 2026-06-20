@@ -25,6 +25,28 @@ Reference floats by label: \cref{fig:cheat-logo}.
   \label{fig:cheat-logo}
 \end{figure}
 
+\section{Subfigures (side-by-side)}
+Place two images in one figure, each with its own sub-caption. Reference the whole
+figure with \cref{fig:cheat-subs}, or a single panel with \cref{fig:cheat-sub-b}.
+
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[height=4cm]{PrincessTwilightSparkle.png}
+    \caption{One pony.}
+    \label{fig:cheat-sub-a}
+  \end{subfigure}\hfill
+  \begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[height=4cm]{Fluttershy.png}
+    \caption{Another pony.}
+    \label{fig:cheat-sub-b}
+  \end{subfigure}
+  \caption{Two images side by side, each with its own sub-caption.}
+  \label{fig:cheat-subs}
+\end{figure}
+
 \section{Tables}
 Use \texttt{booktabs} rules (no vertical lines), caption \emph{above}, as in
 \cref{tab:cheat-example}.

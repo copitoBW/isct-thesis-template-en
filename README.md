@@ -16,7 +16,7 @@ thesis/
 ├── ist_master_thesis.cls         # the class: ALL formatting lives here
 ├── references.bib                # bibliography database (cite with \cite{key})
 ├── frontmatter/
-│   └── abstract.tex  acknowledgment.tex
+│   └── abstract.tex  acknowledgment.tex  abbreviations.tex
 ├── chapters/
 │   └── 01-introduction.tex … 06-conclusion.tex  appendix-a.tex  appendix-b.tex
 │      (appendix-b is a LaTeX cheat-sheet — delete before submission)
@@ -39,27 +39,27 @@ thesis/
 
 ### Requirements
 A TeX distribution (MiKTeX or TeX Live) with: `newtx`, `biblatex`, `biber`,
-`titlesec`, `fancyhdr`, `cleveref`, `booktabs`, `microtype`, `siunitx`. MiKTeX
-installs missing packages on first build.
+`titlesec`, `fancyhdr`, `cleveref`, `booktabs`, `microtype`, `siunitx`,
+`listings`, `acronym`. MiKTeX installs missing packages on first build.
 
 ## Daily workflow
 
 - **New chapter:** add `chapters/07-foo.tex`, then `\input{chapters/07-foo}` in
   `main.tex`.
-- **Figures:** every figure needs a slot (label + caption) immediately, but the
-  image file can come later. Use the smart placeholder so writing is never
-  blocked:
+- **Figures:** put the image in `figures/`, add a figure block, and reference it
+  by label:
   ```latex
   \begin{figure}[ht]
     \centering
-    \figauto{0.9}{pipeline.pdf}{0.4}{short description of the missing figure}
+    \includegraphics[width=0.6\textwidth]{pipeline.png}
     \caption{Real caption.}\label{fig:pipeline}
   \end{figure}
   ```
-  `\figauto{width}{file}{aspect}{desc}` draws a grey placeholder box until
-  `figures/<file>` exists, then **auto-upgrades** to the real image — no code
-  change. (`width` = fraction of text width, `aspect` = height/width of the box.)
-  For a final figure you can also just use `\includegraphics{name.png}`.
+- **Abbreviations:** define each acronym once in `frontmatter/abbreviations.tex`,
+  then write `\ac{key}` in the text — full form on first use, short form after.
+  They also collect into the *List of Abbreviations*.
+- **Code:** use the `lstlisting` environment (or `\lstinputlisting{file}`) for
+  code or algorithms; the clean monospace style is preset.
 - **References:** add to `references.bib` (or export from Zotero), cite with
   `\cite{key}`.
 - **Cross-references:** `\cref{fig:x}`, `\cref{tab:x}`, `\cref{eq:x}`,

@@ -74,32 +74,36 @@
 %  Captions:  "Figure 1.1.  ..."  bold label, chapter numbering
 % ----------------------------------------------------------------
 \RequirePackage[font=small,labelfont=bf,labelsep=period]{caption}
+\RequirePackage{subcaption}     % side-by-side sub-figures with (a)/(b) sub-captions
 
 % ----------------------------------------------------------------
-%  Smart figure placeholders
-%    \figauto{width}{file}{aspect}{description}
-%      -> shows figures/<file> if it exists, else a labelled grey box
-%         of the same footprint so the layout/List of Figures are stable.
-%    \figplaceholder{width}{aspect}{description}  -> always a grey box.
-%  width  = fraction of \textwidth (e.g. 0.8)
-%  aspect = height/width ratio of the placeholder box (e.g. 0.55)
+%  Code listings  (clean, monochrome --- for code or algorithms)
+%    \begin{lstlisting}[language=Python,float=ht,
+%        caption={What it does.},label={lst:demo}]
+%      ...your code...
+%    \end{lstlisting}
+%    or  \lstinputlisting[language=Python]{scripts/foo.py}
+%    Reference with \cref{lst:demo}  (cref name is set after cleveref below).
 % ----------------------------------------------------------------
-\newlength{\ph@wd}
-\newlength{\ph@ht}
-\newcommand{\figplaceholder}[3]{%
-  \setlength{\ph@wd}{#1\textwidth}%
-  \setlength{\ph@ht}{#2\ph@wd}%
-  \setlength{\fboxsep}{0pt}%
-  \fcolorbox{black!45}{black!7}{%
-    \parbox[c][\ph@ht][c]{\ph@wd}{%
-      \centering\small\itshape\color{black!60}%
-      [\,figure placeholder\,]\par\smallskip
-      \normalfont\footnotesize\color{black!55}#3}}%
-}
-\newcommand{\figauto}[4]{%
-  \IfFileExists{figures/#2}%
-    {\includegraphics[width=#1\textwidth]{#2}}%
-    {\figplaceholder{#1}{#3}{#4}}%
+\RequirePackage{listings}
+\lstset{
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape\color{black!55},
+  stringstyle=\color{black!70},
+  numbers=left,
+  numberstyle=\tiny\color{black!55},
+  numbersep=8pt,
+  frame=tb,                 % thin rules top & bottom (matches the booktabs look)
+  framerule=0.4pt,
+  rulecolor=\color{black!55},
+  captionpos=b,             % caption below the listing
+  columns=fullflexible,
+  keepspaces=true,
+  showstringspaces=false,
+  breaklines=true,
+  tabsize=2,
+  xleftmargin=1.5em,
 }
 
 % ----------------------------------------------------------------
@@ -140,6 +144,16 @@
 \RequirePackage[hidelinks,plainpages=false,hypertexnames=false]{hyperref}
 \RequirePackage{cleveref}        % \cref -> "Figure 1.1", "Table 2.1", "Chapter 3"
 \RequirePackage[autostyle]{csquotes}
+\crefname{lstlisting}{Listing}{Listings}% \cref{lst:...} -> "Listing 1"
+\Crefname{lstlisting}{Listing}{Listings}
+
+% ----------------------------------------------------------------
+%  Acronyms / abbreviations
+%    Define each once in frontmatter/abbreviations.tex, then in the text:
+%      \ac{key}  = full form on first use, short form afterwards
+%      \acl{key} = long form,  \acs{key} = short form,  \acf{key} = full
+% ----------------------------------------------------------------
+\RequirePackage{acronym}
 
 % ----------------------------------------------------------------
 %  Bibliography (IEEE numeric, in citation order)
